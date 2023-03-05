@@ -1,4 +1,22 @@
 {
+  "name": "miguelchallenge-14",
+  "description": "GIVEN a CMS-style blog site",
+  "version": "1.0.0",
+  "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darkunitx/Miggys-Tecg-Blog.git"
+  },
+  "author": "Miguel Montenegro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Darkunitx/Miggys-Tecg-Blog/issues"
+  },
+  "homepage": "https://github.com/Darkunitx/Miggys-Tecg-Blog#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.5",
