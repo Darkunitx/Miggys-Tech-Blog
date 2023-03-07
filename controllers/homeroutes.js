@@ -30,6 +30,9 @@ router.get('/post/:id', async (req, res) => {
                 {
                     model: User,
                     attributes: ['name'],
+                },  {
+                    model: Comment,
+                    attributes: ['name'],
                 },
             ],
         });
@@ -44,7 +47,7 @@ router.get('/post/:id', async (req, res) => {
     }
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', async (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
         return;
@@ -53,46 +56,30 @@ router.get('/login', (req, res) => {
 });
 
 
-router.get('/signup', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-    res.render('signup');
-});
+// router.get('/signup', async (req, res) => {
+//     if (req.session.logged_in) {
+//         res.redirect('/');
+//         return;
+//     }
+//     res.render('signup');
+// });
 
 
-router.get('/dashboard', withAuth, async (req, res) => {
-    try {
-        const userData = await User.findByPk(req.session.user_id, {
-            include: [{ model: Post }],
-        });
+// router.get('/newpost', withAuth, async (req, res) => { 
+//     try {
+//         const userData = await User.findByPk(req.session.user_id, {
+//             include: [{ model: Post }],
+//         });
 
-        const user = userData.get({ plain: true });
-        res.render('dashboard', {
-            ...user,
-            logged_in: true
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-router.get('/newpost', withAuth, async (req, res) => { 
-    try {
-        const userData = await User.findByPk(req.session.user_id, {
-            include: [{ model: Post }],
-        });
-
-        const user = userData.get({ plain: true });
-        res.render('newpost', {
-            ...user,
-            logged_in: true
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+//         const user = userData.get({ plain: true });
+//         res.render('newpost', {
+//             ...user,
+//             logged_in: true
+//         });
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
 
 module.exports = router;
