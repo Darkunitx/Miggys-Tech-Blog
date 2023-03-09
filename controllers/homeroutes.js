@@ -56,30 +56,13 @@ router.get('/login', async (req, res) => {
 });
 
 
-// router.get('/signup', async (req, res) => {
-//     if (req.session.logged_in) {
-//         res.redirect('/');
-//         return;
-//     }
-//     res.render('signup');
-// });
-
-
-// router.get('/newpost', withAuth, async (req, res) => { 
-//     try {
-//         const userData = await User.findByPk(req.session.user_id, {
-//             include: [{ model: Post }],
-//         });
-
-//         const user = userData.get({ plain: true });
-//         res.render('newpost', {
-//             ...user,
-//             logged_in: true
-//         });
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
+router.get('/signup', async (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+    res.render('signup');
+});
 
 
 module.exports = router;

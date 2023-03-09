@@ -13,19 +13,25 @@ const loginFormHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
 
+        console.log("Response: ", response);
+        
+
         if (response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
         }
     }
 };
 
+/*
 const signupFormHandler = async (event) => {
     event.preventDefault();
 
     const name = document.querySelector('#name-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
+
+    console.log(name, password);
 
     if (name && password) {
         const response = await fetch('/api/users', {
@@ -35,17 +41,27 @@ const signupFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/');
         } else {
             alert(response.statusText);
         }
     }
 };
+*/
 
+
+/*
 document
     .querySelector('.login-form')
     .addEventListener('submit', loginFormHandler);
+    */
 
+let loginForm = document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
+console.log(loginForm);
+
+    /*
 document
     .querySelector('.signup-form')
     .addEventListener('submit', signupFormHandler);
+
+    */
