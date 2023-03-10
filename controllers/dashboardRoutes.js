@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Post} = require('../models');
 const withAuth = require('../utils/auth');
 
+// might need to add additionasl attributes
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -15,6 +16,7 @@ router.get('/', async (req, res) => {
         
         const posts = postData.map((post) => post.get({ plain: true }));
         res.render('newpost', {
+            layout: "main",
             posts,
             logged_in: req.session.logged_in
         });
@@ -23,7 +25,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
@@ -44,7 +46,7 @@ router.get('/post/:id', async (req, res) => {
     }
 });
 
-router.post('post', async (req, res) => {
+router.post('post', withAuth, async (req, res) => {
     try {
         const postData = await Post.create({
             title: req.body.title,
@@ -57,7 +59,7 @@ router.post('post', async (req, res) => {
     }
 });
 
-router.put('/post/:id', async (req, res) => {
+router.put('/post/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.update(
             {
@@ -76,7 +78,7 @@ router.put('/post/:id', async (req, res) => {
     }
 });
 
-router.delete('/post/:id', async (req, res) => {
+router.delete('/post/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.destroy({
             where: {

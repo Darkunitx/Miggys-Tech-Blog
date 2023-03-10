@@ -3,10 +3,9 @@
   "description": "GIVEN a CMS-style blog site",
   "version": "1.0.0",
   "main": "server.js",
-    "scripts": {
-      "start": "node server.js"
-    },
-  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Darkunitx/Miggys-Tecg-Blog.git"
@@ -25,6 +24,7 @@
     "express-handlebars": "^7.0.1",
     "express-session": "^1.17.3",
     "mysql2": "^3.1.2",
+    "nodemon": "^2.0.21",
     "sequelize": "^6.29.0"
   }
 }
