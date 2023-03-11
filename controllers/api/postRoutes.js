@@ -2,10 +2,10 @@ const router = require('express').Router();
 const { Post } = require('../../models/index');
 const withAuth = require('../../utils/auth');
 
-router.get('/', async (req, res) => {
-    const post = { name: '', content: '' };
-    res.render('edit-post', { post });
-});
+router.get("/", async (req, res) => {
+    const post = { name: "", content: "" }
+    res.render("editpost", { post, newPost: true, loggedIn: req.session.loggedIn });
+  });
 
 router.post('/', async (req, res) => {
     try {
